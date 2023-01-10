@@ -25,6 +25,7 @@ namespace DonateMedicine
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc();
 
             services.AddDbContext<HealthCareDbContext>(options =>
             {
@@ -55,6 +56,24 @@ namespace DonateMedicine
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            var scope = app.ApplicationServices.CreateScope();
+            var context = scope.ServiceProvider.GetService<HealthCareDbContext>();
+            SeedData(context);
+        }
+
+        public static void SeedData(HealthCareDbContext context)
+        {
+            Register user = new Register
+            {
+                Username = "Admin",
+                Password = "Admin@123",
+                Address = "Brazil",
+                Age = 24,
+                Gender = "Male"
+            };
+            context.Registers.Add(user);
+            context.SaveChanges();
         }
     }
 }

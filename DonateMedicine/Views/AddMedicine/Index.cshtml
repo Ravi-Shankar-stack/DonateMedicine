@@ -1,0 +1,48 @@
+﻿@model DonateMedicine.Models.Medicine
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success">Add Medicine Details</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="Index">
+                        <div class="form-group">
+                            <input asp-for="Id" placeholder="Id" class="form-control" type="text" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input asp-for="Name" placeholder="Name" class="form-control" type="text" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input asp-for="Category" placeholder="Category" class="form-control" type="text" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input asp-for="Quantity" placeholder="Quantity" class="form-control" type="number" />
+                        </div>
+                        <br />
+
+                        @*<div class="form-group">
+            <div id="message">@errorMessage</div>
+        </div>*@
+                        <br />
+                        <div class="form-group">
+                            <button value="Register" class="btn btn-success btn-group-sm">Add Medicine</button>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

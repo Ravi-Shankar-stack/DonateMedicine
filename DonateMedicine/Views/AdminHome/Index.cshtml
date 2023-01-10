@@ -1,0 +1,68 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<DonateMedicine.Models.Medicine>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "adminhome";
+            //List<Medicine> allMedicines = ViewBag.allMedicines as List<Medicine>;
+}
+<style>
+    .button {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+    }
+    .button3 {
+        border-radius: 8px;
+    }
+    tr,th{
+        border : 1px solid black;
+        min-width: 250px;
+    }
+</style>
+<div>
+    <a class="button button3 btn-primary" asp-action="Index" asp-controller="AddMedicine">Add Medicine Details</a>
+    <button class="button button3 btn-primary">View All User Donate Data</button>
+    <button class="button button3 btn-primary">View all user Request Data</button>
+</div>
+<h3 class=" text-dark">Available Medicine details</h3>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Medicine Id</th>
+                <th>Medicine Name</th>
+                <th>Medicine Category</th>
+                <th>Medicine Quantity</th>
+            </tr>
+        </thead>
+        @if (Model.Count() > 0)
+        {
+            @foreach (var d in Model)
+            {
+                <tbody>
+                    <tr class="text-center">
+                        <td>@d.Id</td>
+                        <td>@d.Name</td>
+                        <td>@d.Category</td>
+                        <td>@d.Quantity</td>
+                    </tr>
+                </tbody>
+            }
+        }
+
+
+    </table>
+    @if (Model.Count() == 0)
+    {
+        <tr>No Medicines Found</tr>
+    }
+</div>
+
