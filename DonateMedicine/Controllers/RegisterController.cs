@@ -23,6 +23,7 @@ namespace DonateMedicine.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Index(Register register)
         {
             if(register == null || register.Username == null || register.Password == null || register.Gender== null ||register.Age == null || register.Address == null)
@@ -34,7 +35,7 @@ namespace DonateMedicine.Controllers
             {
                 context.Registers.Add(register);
                 context.SaveChanges();
-                return RedirectToAction("Login");
+                return RedirectToAction("Login","Login");
             }
         }
     }

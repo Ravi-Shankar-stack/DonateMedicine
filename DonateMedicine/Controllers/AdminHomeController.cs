@@ -23,7 +23,7 @@ namespace DonateMedicine.Controllers
             //ViewBag.allMedicines = context.Medicines.ToList();
             var AllMedicines = context.Medicines.ToList();
             return View(AllMedicines);
-            return View();
+            
         }
     }
 }

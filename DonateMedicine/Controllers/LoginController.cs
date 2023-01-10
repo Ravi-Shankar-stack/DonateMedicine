@@ -57,7 +57,7 @@ namespace DonateMedicine.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("");
+                        return RedirectToAction("Privacy","Home");
                     }
                 }
             }

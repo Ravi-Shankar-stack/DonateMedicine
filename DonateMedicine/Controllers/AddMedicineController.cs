@@ -17,9 +17,41 @@ namespace DonateMedicine.Controllers
         }
 
         [HttpGet]
+        [Route("/addmedicine")]
         public IActionResult Index()
         {
+            ViewBag.errorMessage = "";
             return View();
+        }
+
+        [HttpPost]
+        [Route("/addmedicine")]
+        public IActionResult Index(Medicine medicine)
+        {
+            if(medicine.Name == null || medicine.Category == null || medicine.Name.Length <4 ||
+                medicine.Quantity<1 || medicine.Quantity >9999 || medicine.Quantity == 0)
+            {
+                ViewBag.errorMessage = "";
+                return View();
+            }
+            else
+            {
+                int id = context.Medicines.ToList().Count + 1;
+                medicine.Id = id;
+                Medicine searchMedicine = context.Medicines.FirstOrDefault(m => m.Name == medicine.Name && m.Category == medicine.Category);
+                if (searchMedicine == null)
+                {
+                    context.Medicines.Add(medicine);
+                }
+                else
+                {
+                    searchMedicine.Quantity += medicine.Quantity;
+                }
+
+                context.SaveChanges();
+                return RedirectToAction("Index", "AdminHome");
+            }
+            
         }
     }
 }
