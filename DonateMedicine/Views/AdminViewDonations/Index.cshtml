@@ -1,0 +1,59 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model DonateMedicine.Models.Donation
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Donation> AllDonation = ViewBag.AllDonations as List<Donation>;
+}
+<style>
+    tr, th {
+        border: 1px solid black;
+        min-width: 200px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3 class="text-dark">All Donor Details</h3>
+            <br />
+            <table>
+                <tr>
+                    <th>Medicine Category</th>
+                    <th> Medicne Name</th>
+                    <th>Donate Quantity</th>
+                    <th>Donor Name</th>
+                    <th>Pickup Address</th>
+                    <th>Dononated Date</th>
+
+                </tr>
+                @if(AllDonation.Count > 0)
+                    {
+                        @for(int i=0; i<AllDonation.Count(); i++)
+                        {
+                            string medCategory = String.Format("medCategory{0}", i + 1);
+                            string medName = String.Format("medName{0}", i + 1);
+                            string medQty = String.Format("medQty{0}", i + 1);
+                            string donorName = String.Format("donorName{0}", i + 1);
+                            string pickupAddress = String.Format("pickupAddress{0}", i + 1);
+                            string donatedDate = String.Format("donatedDate{0}", i + 1);
+                        <tr>
+                            <td><label id="@medCategory">@AllDonation[i].MedicineCategory</label></td>
+                            <td><label id="@medName">@AllDonation[i].MedicineName</label></td>
+                            <td><label id="@medQty">@AllDonation[i].DonationQuantity</label></td>
+                            <td><label id="@donorName">@AllDonation[i].DonarName</label></td>
+                            <td><label id="@pickupAddress">@AllDonation[i].PickupAddress</label></td>
+                            <td><label id="@donatedDate">@AllDonation[i].DonateDate.ToString("dd/MM/yyyy")</label></td>
+
+                        </tr>
+                        }
+                    }
+            </table>
+            @if(AllDonation.Count == 0)
+            {
+                <p id="noData" style="text-align:center"> No Medicine found</p>
+            }
+        </div>
+    </div>
+</div>

@@ -29,8 +29,8 @@
 </style>
 <div>
     <a class="button button3 btn-primary" asp-action="Index" asp-controller="AddMedicine">Add Medicine Details</a>
-    <button class="button button3 btn-primary">View All User Donate Data</button>
-    <button class="button button3 btn-primary">View all user Request Data</button>
+    <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewDonations">View All User Donate Data</a>
+    <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewRequests">View all user Request Data</a>
 </div>
 <h3 class=" text-dark">Available Medicine details</h3>
 <div>
@@ -62,7 +62,7 @@
     </table>
     @if (Model.Count() == 0)
     {
-        <tr>No Medicines Found</tr>
+        <p style="text-align:center">No Medicines Found</p>
     }
 </div>
 

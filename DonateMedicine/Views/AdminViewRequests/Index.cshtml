@@ -1,0 +1,51 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<DonateMedicine.Models.Request>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    tr, th {
+        border: 1px solid black;
+        min-width: 200px;
+    }
+</style>
+
+<h3 class=" text-dark">All Request  details</h3>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Medicine Category</th>
+                <th>Medicine Name</th>
+                <th>Requested Quantity</th>
+                <th>Requester Name</th>
+                <th>Deivery Address</th>
+                <th>Requested Date</th>
+            </tr>
+        </thead>
+        @if (Model.Count() > 0)
+        {
+            @foreach (var d in Model)
+            {
+                <tbody>
+                    <tr class="text-center">
+                        <td>@d.MedicineCategory</td>
+                        <td>@d.MedicineName</td>
+                        <td>@d.RequestedQuantity</td>
+                        <td>@d.RequesterName</td>
+                        <td>@d.DeliveryAddress</td>
+                        <td>@d.RequestedDate</td>
+                    </tr>
+                </tbody>
+            }
+        }
+
+
+    </table>
+    @if (Model.Count() == 0)
+    {
+        <p style="text-align:center">No Request Found</p>
+    }
+</div>

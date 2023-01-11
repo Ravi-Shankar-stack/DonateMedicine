@@ -15,5 +15,8 @@ namespace DonateMedicine.Models
 
         public DbSet<Register> Registers { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<Donation> Donations { get; set; }
+        public DbSet<Request> Requests { get; set; }
+
     }
 }
