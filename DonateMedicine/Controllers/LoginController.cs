@@ -17,6 +17,7 @@ namespace DonateMedicine.Controllers
         }
 
         [HttpGet]
+        [Route("~/")]
         [Route("/login")]
         public IActionResult Login()
         {
