@@ -1,0 +1,50 @@
+﻿@model DonateMedicine.Models.Request
+@using System.Collections.Generic
+@{
+    string errorMessage = ViewBag.errorMessage;
+    ViewData["Title"] = "UserRequestMedicine";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+
+    List<Medicine> MedicineList = ViewBag.MedicineList as List<Medicine>;
+    var categories = new List<string>();
+    var names = new List<string>();
+    if(MedicineList != null && MedicineList.Count > 0)
+    {
+        foreach(Medicine med in MedicineList)
+        {
+            categories.Add(med.Category);
+            names.Add(med.Name);
+        }
+    }
+}
+
+<style>
+
+</style>
+
+<div>
+    <h3><label>Request Medicine</label></h3>
+    <form asp-action="Index" method="post">
+        <div class="form-group">
+            <select asp-for="MedicineCategory" id="medCategory">
+                <option value="null">Select Category</option>
+                @foreach (string c in categories)
+                {
+                    <option value="@c"> @c</option>
+                }
+            </select>
+            <select asp-for="MedicineName" id="medName">
+                <option value="null">Select Med Name</option>
+                @foreach (string name in names)
+                {
+                    <option value="@name"> @name</option>
+                }
+            </select>
+            <input readonly value="Available Quantity" id="availaibleQuantity" />
+            <input asp-for="RequestedQuantity" id="quantity" type="number" placeholder="Quantity" />
+            <button class="btn btn-success btn-group-sm">Submit</button>
+            <div id="error">@errorMessage</div>
+        </div>
+    </form>
+</div>
+

@@ -5,7 +5,12 @@
 *@
 @{
     ViewData["Title"] = "adminhome";
-            //List<Medicine> allMedicines = ViewBag.allMedicines as List<Medicine>;
+    //List<Medicine> allMedicines = ViewBag.allMedicines as List<Medicine>;
+    string loggedInUser = "";
+    if (TempData.Peek("loggedInUsername") != null)
+    {
+        loggedInUser = TempData.Peek("loggedInUsername").ToString();
+    }
 }
 <style>
     .button {
@@ -26,11 +31,25 @@
         border : 1px solid black;
         min-width: 250px;
     }
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 40px;
+    }
 </style>
 <div>
     <a class="button button3 btn-primary" asp-action="Index" asp-controller="AddMedicine">Add Medicine Details</a>
     <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewDonations">View All User Donate Data</a>
     <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewRequests">View all user Request Data</a>
+</div>
+<div class="navbar">
+    <div>
+        <label id=" welcomeUserName">Logged In User: </label>
+        @loggedInUser
+        <a href="/userhome">Home</a>
+        <a href="/login">Logout</a>
+    </div>
 </div>
 <h3 class=" text-dark">Available Medicine details</h3>
 <div>
@@ -43,7 +62,7 @@
                 <th>Medicine Quantity</th>
             </tr>
         </thead>
-        @if (Model.Count() > 0)
+        @*@if (Model.Count() > 0)
         {
             @foreach (var d in Model)
             {
@@ -56,13 +75,34 @@
                     </tr>
                 </tbody>
             }
-        }
+        }*@
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4" align="center">No medicine available</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Category</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                }
+            }
+        </tbody>
+
 
 
     </table>
-    @if (Model.Count() == 0)
+    @*@if (Model.Count() == 0)
     {
         <p style="text-align:center">No Medicines Found</p>
-    }
+    }*@
 </div>
 

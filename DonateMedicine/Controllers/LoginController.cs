@@ -51,14 +51,14 @@ namespace DonateMedicine.Controllers
                 else
                 {
                     TempData["loggedInUsername"] = user.Username;
-                    TempData["loggedinAddress"] = user.Address;
+                    TempData["loggedInAddress"] = user.Address;
                     if(user.Username == "Admin")
                     {
                         return RedirectToAction("Index","AdminHome");
                     }
                     else
                     {
-                        return RedirectToAction("Privacy","Home");
+                        return RedirectToAction("Index", "UserHome");
                     }
                 }
             }

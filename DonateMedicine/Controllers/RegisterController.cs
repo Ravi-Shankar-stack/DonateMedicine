@@ -26,7 +26,7 @@ namespace DonateMedicine.Controllers
         [HttpPost]
         public IActionResult Index(Register register)
         {
-            if(register == null || register.Username == null || register.Password == null || register.Gender== null ||register.Age == null || register.Address == null)
+            if(register == null || register.Username == null || register.Password == null || register.Gender== null ||register.Age == 0 || register.Address == null)
             {
                 ViewBag.errorMessage = "Invalid Input";
                 return View();

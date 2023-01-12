@@ -25,7 +25,8 @@
                 <th>Requested Date</th>
             </tr>
         </thead>
-        @if (Model.Count() > 0)
+
+        @*@if (Model.Count() > 0)
         {
             @foreach (var d in Model)
             {
@@ -40,12 +41,36 @@
                     </tr>
                 </tbody>
             }
-        }
+        }*@
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" align="center">No medicine available</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var d in Model)
+                {
+                
+                    <tr class="text-center">
+                        <td>@d.MedicineCategory</td>
+                        <td>@d.MedicineName</td>
+                        <td>@d.RequestedQuantity</td>
+                        <td>@d.RequesterName</td>
+                        <td>@d.DeliveryAddress</td>
+                        <td>@d.RequestedDate</td>
+                    </tr>
+                
+                  }
+            }
+            </tbody>
 
 
-    </table>
-    @if (Model.Count() == 0)
+        </table>
+    @*@if (Model.Count() == 0)
     {
         <p style="text-align:center">No Request Found</p>
-    }
+    }*@
 </div>

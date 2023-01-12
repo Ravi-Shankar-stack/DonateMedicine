@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DonateMedicine.Models.Request>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<style>
+    tr, th {
+        border: 1px solid black;
+        min-width: 150px;
+    }
+</style>
+
+
+
+<div>
+    <div>
+        <a class="button button3 btn-primary" asp-action="Index" asp-controller="UserRequestMedicine">Request Medicine</a>
+        <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewDonations">Donate Medicine</a>
+        <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewRequests">View Donate Medicine</a>
+    </div>
+    <h3 class=" text-dark"> Medicine Request details</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Medicine Id</th>
+                <th>Medicine Category</th>
+                <th>Medicine Name</th>
+                <th>Requested Quantity</th>
+                <th>Requester Name</th>
+                <th>DeliveryAddress</th>
+                <th>Requested Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" align="center">No medicine available</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.MedicineCategory</td>
+                        <td>@item.MedicineName</td>
+                        <td>@item.RequestedQuantity</td>
+                        <td>@item.RequesterName</td>
+                        <td>@item.DeliveryAddress</td>
+                        <td>@item.RequestedDate</td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+
+
+    </table>
+
+</div>
+
