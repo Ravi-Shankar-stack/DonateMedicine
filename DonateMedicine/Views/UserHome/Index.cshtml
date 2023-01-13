@@ -16,8 +16,8 @@
 <div>
     <div>
         <a class="button button3 btn-primary" asp-action="Index" asp-controller="UserRequestMedicine">Request Medicine</a>
-        <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewDonations">Donate Medicine</a>
-        <a class="button button3 btn-primary" asp-action="Index" asp-controller="AdminViewRequests">View Donate Medicine</a>
+        <a class="button button3 btn-primary" asp-action="Index" asp-controller="UserDonateMedicine">Donate Medicine</a>
+        <a class="button button3 btn-primary" asp-action="Index" asp-controller="UserViewDonateMedicine">View Donate Medicine</a>
     </div>
     <h3 class=" text-dark"> Medicine Request details</h3>
     <table>
@@ -51,7 +51,7 @@
                         <td>@item.RequestedQuantity</td>
                         <td>@item.RequesterName</td>
                         <td>@item.DeliveryAddress</td>
-                        <td>@item.RequestedDate</td>
+                        <td>@item.RequestedDate.ToString("dd/MM/yyyy")</td>
                     </tr>
                 }
             }

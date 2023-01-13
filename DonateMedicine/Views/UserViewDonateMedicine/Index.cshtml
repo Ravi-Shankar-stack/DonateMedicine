@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DonateMedicine.Models.Donation>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "UserViewDonateMedicne";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+    tr, th {
+        border: 1px solid black;
+        min-width: 200px;
+    }
+</style>
+
+<h3 class=" text-dark">All Request  details</h3>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Medicine Category</th>
+                <th>Medicine Name</th>
+                <th>Donate Quantity</th>
+                <th>Donar Name</th>
+                <th>PickUp Address</th>
+                <th>Donated Date</th>
+            </tr>
+        </thead>
+
+        
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" align="center">No medicine available</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var d in Model)
+                {
+
+                    <tr class="text-center">
+                        <td>@d.MedicineCategory</td>
+                        <td>@d.MedicineName</td>
+                        <td>@d.DonationQuantity</td>
+                        <td>@d.DonarName</td>
+                        <td>@d.PickupAddress</td>
+                        <td>@d.DonateDate.ToString("dd/MM/yyyy")</td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+
+
+    </table>
+    
+</div>
+
